@@ -56,5 +56,5 @@ class Tag(db.Model):
         self.slug = slugify(self.name)
 
     def __repr__(self):
-        return f'<class Tag name: {self.name}, id: {self.id}> '
+        return f'{self.name}'
     

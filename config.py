@@ -5,4 +5,5 @@ class Configuration:
     # engine = create_engine('postgresql://postgres:Python@localhost:5432/postgres')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     WTF_CSRF_ENABLED = False
+    SECRET_KEY = 'very secret'
     
