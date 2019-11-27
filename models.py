@@ -45,7 +45,7 @@ class Post(db.Model):
             self.slug = slugify(self.title)
 
     def __repr__(self):
-        return f'<Post id: {self.id}, title: {self.title}>'
+        return f'Post id: {self.id}, title: {self.title}'
 
 
 class Tag(db.Model):
@@ -84,7 +84,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'{self.name}'
-    
+
     roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
 
 
