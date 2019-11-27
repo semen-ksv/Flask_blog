@@ -7,6 +7,7 @@ from flask_script import Manager
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
+from flask_security import SQLAlchemySessionUserDatastore, Security
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
@@ -14,15 +15,21 @@ app.config.from_object(Configuration)
 db = SQLAlchemy(app)
 
 # Admin
-from models import Post, Tag
+from models import *
 admin = Admin(app)
 admin.add_view(ModelView(Post, db.session))
-admin.add_view((ModelView(Tag, db.session)))
+admin.add_view(ModelView(Tag, db.session))
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Role, db.session))
 
 # Migration 
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
+
+# Flask security
+user_datastore = SQLAlchemySessionUserDatastore(db.session, User, Role)
+security = Security(app, user_datastore)
 
 
 

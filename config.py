@@ -6,4 +6,5 @@ class Configuration:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     WTF_CSRF_ENABLED = False
     SECRET_KEY = 'very secret'
-    
+    SECURITY_PASSWORD_SALT = 'salt'
+    SECURITY_PASSWORD_HASH = 'bcrypt'
