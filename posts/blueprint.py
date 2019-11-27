@@ -6,9 +6,16 @@ from .forms import PostForm
 from app import db
 from flask import redirect
 from flask import url_for
-from flask_security import login_required
+from flask_security import login_required, current_user
 
 posts = Blueprint('posts', __name__, template_folder='templates')
+
+
+@posts.route('/admin', methods=["GET"])
+@login_required
+def admin():
+    if not current_user.has_role('admin'):
+        redirect(url_for('security.login', next=request.url))
 
 
 @posts.route('/create', methods=["POST", "GET"])
