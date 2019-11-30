@@ -5,14 +5,18 @@
 {% endblock %}
 
 {% block content_title%}
-    My posts
+    <p class="post"> My posts</p>
 {% endblock %}
 
 {% block content%}
     {% for post in pages.items %}
+
         <p>
-            <a href="{{ url_for('posts.post_detail', slug=post.slug) }}">{{ post.title }} </a>
+            <a id="name__link" href="{{ url_for('posts.post_detail', slug=post.slug) }}"
+               style="color: darkslategray; text-decoration: none; font-size: 16px; text-transform: uppercase;font-weight: 500;"
+            >{{ post.title }} </a>
         </p>
+
     {% endfor %}
 
     <!-- navigation form-->
